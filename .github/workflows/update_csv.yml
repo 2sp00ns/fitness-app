@@ -2,11 +2,11 @@ name: Update CSV from Google Sheets
 
 on:
   schedule:
-    - cron: "0 * * * *"
-  workflow_dispatch:
+    - cron: "0 * * * *"  # Runs at the top of every hour
+  workflow_dispatch:     # Allows manual trigger if needed
 
 permissions:
-  contents: write   # This grants the workflow permission to push changes
+  contents: write        # Grants the workflow permission to push changes
 
 jobs:
   update-csv:
@@ -25,5 +25,11 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add data/data.csv
-          git commit -m "Update CSV from Google Sheets"
-          git push
+
+          # Check if there are changes
+          if git diff --cached --quiet; then
+            echo "No changes to commit. Exiting."
+          else
+            git commit -m "Update CSV from Google Sheets"
+            git push
+          fi
