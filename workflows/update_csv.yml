@@ -15,7 +15,7 @@ jobs:
 
       - name: Fetch CSV
         run: |
-          curl -L "https://docs.google.com/spreadsheets/d/e/YOUR_SHEET_ID/pub?gid=YOUR_GID&single=true&output=csv" -o data/data.csv
+          curl -L "https://docs.google.com/spreadsheets/d/e/2PACX-1vTdfofqx68BuFHAnCLFUiH9H1VyHM6TvkYJl3gXOWhv9oq_wrh3D8ffgWlnwCCyvHb6Sb5dfHT8sftr/pub?gid=576642623&single=true&output=csv" -o data/data.csv
 
       - name: Commit and Push Updated CSV
         run: |
