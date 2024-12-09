@@ -43,7 +43,7 @@
             padding: 15px;
             background-color: black;
             color: white;
-            border-bottom: 1px solid rgb(140, 140, 140);
+            border-bottom: 1px solid rgb(44, 44, 44);
             font-size: 1.2em;
             font-weight: bold;
             cursor: pointer;
@@ -108,14 +108,15 @@
             color: white;
         }
 
-        .grid-bottom {
-            display: grid;
-            align-content: space-evenly;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(1, 0fr);
-            height: 20%;
-            width: 100%;
-            color: white;
+        .view h2 {
+            margin-top: 15px;
+            margin-bottom: 0;
+            font-size: 1.4em;
+            font-weight: normal;
+            color: #696969;
+            display: flex;
+            padding: 10px;
+            justify-content: center;
         }
 
         .grid-item {
@@ -335,6 +336,7 @@
         <div id="view-container">
             <!-- Overview View -->
             <div id="view-1" class="view">
+                <h2>This Week</h2>
                 <div class="grid">
                     <div class="grid-item">
                         <h3>Avg HR</h3>
@@ -401,6 +403,143 @@
                         </div>
                     </div>
                 </div>
+                <h2>Progress</h2>
+                <div class="grid">
+                    <div class="grid-item">
+                        <h3>Avg HR</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Intensity Minutes</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Bodyfat %</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Workouts</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Avg HR</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Intensity Minutes</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Bodyfat %</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Workouts</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                </div>
+                <h2>Health</h2>
+                <div class="grid">
+                    <div class="grid-item">
+                        <h3>Avg HR</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Intensity Minutes</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Bodyfat %</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Workouts</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Avg HR</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Intensity Minutes</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Bodyfat %</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Workouts</h3>
+                        <div class="value">123</div>
+                        <div class="change">
+                            <span class="arrow up"></span>
+                            5%
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Body View -->
+            <div id="view-2" class="view" style="display: none;">
                 <div id="content">
                     <div id="left"
                         style="background-color: black; height: 100%; display: flex; align-items: center; justify-content: center;">
@@ -515,302 +654,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid-bottom">
-                    <div class="grid-item">
-                        <h3>Avg HR</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Intensity Minutes</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Bodyfat %</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Workouts</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Avg HR</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Intensity Minutes</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Bodyfat %</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Workouts</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                </div>
             </div>
-
-            <!-- Health View -->
-            <div id="view-2" class="view" style="display: none;">
-                <div class="graph">
-                    Graph Placeholder
-                </div>
-                <div id="content">
-                    <div id="left"
-                        style="background-color: black; height: 100%; display: flex; align-items: center; justify-content: center;">
-                        <svg class="svg-container" id="body-outline-yesterday" viewBox="0 0 200 500"
-                            preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;">
-                            <!-- Generated SVG paths based on JavaScript body part data -->
-                        </svg>
-                    </div>
-                    <div id="right">
-                        <div class="graphic-item">
-                            <div class="text">Neck</div>
-                            <div class="details">
-                                <div class="detail">Size: <span class="value">X</span></div>
-                                <div class="detail">BF: <span class="value">X</span></div>
-                                <div class="detail">Change:
-                                    <span class="arrow up"></span>
-                                    <span class="value">5%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="graphic-item">
-                            <div class="text">Shoulders</div>
-                            <div class="details">
-                                <div class="detail">Size: <span class="value">X</span></div>
-                                <div class="detail">BF: <span class="value">X</span></div>
-                                <div class="detail">Change:
-                                    <span class="arrow down"></span>
-                                    <span class="value">-3%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="graphic-item">
-                            <div class="text">Chest</div>
-                            <div class="details">
-                                <div class="detail">Size: <span class="value">X</span></div>
-                                <div class="detail">BF: <span class="value">X</span></div>
-                                <div class="detail">Change:
-                                    <span class="arrow down"></span>
-                                    <span class="value">-3%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="graphic-item">
-                            <div class="text">Upper Arms</div>
-                            <div class="details">
-                                <div class="detail">Size: <span class="value">X</span></div>
-                                <div class="detail">BF: <span class="value">X</span></div>
-                                <div class="detail">Change:
-                                    <span class="arrow down"></span>
-                                    <span class="value">-3%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="graphic-item">
-                            <div class="text">Lower Arms</div>
-                            <div class="details">
-                                <div class="detail">Size: <span class="value">X</span></div>
-                                <div class="detail">BF: <span class="value">X</span></div>
-                                <div class="detail">Change:
-                                    <span class="arrow down"></span>
-                                    <span class="value">-3%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="graphic-item">
-                            <div class="text">Waist</div>
-                            <div class="details">
-                                <div class="detail">Size: <span class="value">X</span></div>
-                                <div class="detail">BF: <span class="value">X</span></div>
-                                <div class="detail">Change:
-                                    <span class="arrow down"></span>
-                                    <span class="value">-3%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="graphic-item">
-                            <div class="text">Hips</div>
-                            <div class="details">
-                                <div class="detail">Size: <span class="value">X</span></div>
-                                <div class="detail">BF: <span class="value">X</span></div>
-                                <div class="detail">Change:
-                                    <span class="arrow down"></span>
-                                    <span class="value">-3%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="graphic-item">
-                            <div class="text">Upper Leg</div>
-                            <div class="details">
-                                <div class="detail">Size: <span class="value">X</span></div>
-                                <div class="detail">BF: <span class="value">X</span></div>
-                                <div class="detail">Change:
-                                    <span class="arrow down"></span>
-                                    <span class="value">-3%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="graphic-item">
-                            <div class="text">Lower Leg</div>
-                            <div class="details">
-                                <div class="detail">Size: <span class="value">X</span></div>
-                                <div class="detail">BF: <span class="value">X</span></div>
-                                <div class="detail">Change:
-                                    <span class="arrow down"></span>
-                                    <span class="value">-3%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="grid-item">Avg HR</div>
-                    <div class="grid-item">Activity Minutes</div>
-                    <div class="grid-item">Calories Burned</div>
-                    <div class="grid-item">Lifting Sessions</div>
-                    <div class="grid-item">Runs</div>
-                    <div class="grid-item">BF%</div>
-                </div>
-            </div>
-
             <!-- Cardio View -->
             <div id="view-3" class="view" style="display: none;">
-                <div class="graph">
-                    Graph Placeholder
-                </div>
-                <div id="content">
-                    <div id="left"
-                        style="background-color: black; height: 100%; display: flex; align-items: center; justify-content: center;">
-                        <svg class="svg-container" id="body-outline-7day" viewBox="0 0 200 500"
-                            preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;">
-                            <!-- Generated SVG paths based on JavaScript body part data -->
-                        </svg>
-                    </div>
-                    <div id="right">
-                        <div class="graphic-item">Neck</div>
-                        <div class="graphic-item">Shoulders</div>
-                        <div class="graphic-item">Chest</div>
-                        <div class="graphic-item">Upper Arms</div>
-                        <div class="graphic-item">Lower Arms</div>
-                        <div class="graphic-item">Waist</div>
-                        <div class="graphic-item">Hips</div>
-                        <div class="graphic-item">Upper Leg</div>
-                        <div class="graphic-item">Lower Leg</div>
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="grid-item">Avg HR</div>
-                    <div class="grid-item">Activity Minutes</div>
-                    <div class="grid-item">Calories Burned</div>
-                    <div class="grid-item">Lifting Sessions</div>
-                    <div class="grid-item">Runs</div>
-                    <div class="grid-item">BF%</div>
-                </div>
             </div>
-
             <!-- Lifting View -->
             <div id="view-4" class="view" style="display: none;">
-                <div class="graph">
-                    Graph Placeholder
-                </div>
-                <div id="content">
-                    <div id="left"
-                        style="background-color: black; height: 100%; display: flex; align-items: center; justify-content: center;">
-                        <svg class="svg-container" id="body-outline-4week" viewBox="0 0 200 500"
-                            preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;">
-                            <!-- Generated SVG paths based on JavaScript body part data -->
-                        </svg>
-                    </div>
-                    <div id="right">
-                        <div class="graphic-item">Neck</div>
-                        <div class="graphic-item">Shoulders</div>
-                        <div class="graphic-item">Chest</div>
-                        <div class="graphic-item">Upper Arms</div>
-                        <div class="graphic-item">Lower Arms</div>
-                        <div class="graphic-item">Waist</div>
-                        <div class="graphic-item">Hips</div>
-                        <div class="graphic-item">Upper Leg</div>
-                        <div class="graphic-item">Lower Leg</div>
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="grid-item">Avg HR</div>
-                    <div class="grid-item">Activity Minutes</div>
-                    <div class="grid-item">Calories Burned</div>
-                    <div class="grid-item">Lifting Sessions</div>
-                    <div class="grid-item">Runs</div>
-                    <div class="grid-item">BF%</div>
-                </div>
             </div>
-
             <!-- Hyrox View -->
             <div id="view-5" class="view" style="display: none;">
-                <div class="graph">
-                    Graph Placeholder
-                </div>
-                <div id="content">
-                    <div id="left"
-                        style="background-color: black; height: 100%; display: flex; align-items: center; justify-content: center;">
-                        <svg class="svg-container" id="body-outline-all" viewBox="0 0 200 500"
-                            preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;">
-                            <!-- Generated SVG paths based on JavaScript body part data -->
-                        </svg>
-                    </div>
-                    <div id="right">
-                        <div class="graphic-item">Neck</div>
-                        <div class="graphic-item">Shoulders</div>
-                        <div class="graphic-item">Chest</div>
-                        <div class="graphic-item">Upper Arms</div>
-                        <div class="graphic-item">Lower Arms</div>
-                        <div class="graphic-item">Waist</div>
-                        <div class="graphic-item">Hips</div>
-                        <div class="graphic-item">Upper Leg</div>
-                        <div class="graphic-item">Lower Leg</div>
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="grid-item">Avg HR</div>
-                    <div class="grid-item">Activity Minutes</div>
-                    <div class="grid-item">Calories Burned</div>
-                    <div class="grid-item">Lifting Sessions</div>
-                    <div class="grid-item">Runs</div>
-                    <div class="grid-item">BF%</div>
-                </div>
             </div>
         </div>
     </div>
@@ -1168,11 +1020,7 @@
             });
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            generateBodyParts();
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
+        function bodyPartFunctionality() {
             const groups = {
                 neck: ['neck'],
                 shoulders: ['deltoids', 'trapezius'],
@@ -1280,16 +1128,16 @@
                     resetSelection();
                 }
             });
-        });
+        };
 
 
         // Views data with content
         var views = [
-            { id: 1, name: "Overview"},
-            { id: 2, name: "Health"},
-            { id: 3, name: "Cardio"},
-            { id: 4, name: "Lifting"},
-            { id: 5, name: "Hyrox"}
+            { id: 1, name: "Overview" },
+            { id: 2, name: "Body" },
+            { id: 3, name: "Cardio" },
+            { id: 4, name: "Lifting" },
+            { id: 5, name: "Hyrox" }
         ];
 
         function toggleDropdown() {
@@ -1327,6 +1175,12 @@
             const targetView = document.getElementById(`view-${viewId}`);
             if (targetView) {
                 targetView.style.display = "block";
+            }
+
+            // Call generateBodyParts when view id 2 is selected
+            if (viewId === 2) {
+                generateBodyParts();
+                bodyPartFunctionality();
             }
 
             // Hide the dropdown menu
