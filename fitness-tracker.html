@@ -5,323 +5,292 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            background-color: black;
-            color: #333;
-            font-family: Arial, sans-serif;
-            width: 100vw;
-            height: 100vh;
-        }
+/* Root Variables for Colors */
+:root {
+    --background-color: #f2f2f2;
+    --svg-background:white;
+    --primary-color: #007acc;
+    --secondary-color: #e6f7ff;
+    --text-color: #333;
+    --border-color: #d9d9d9;
+    --highlight-color: #7cb2d7;
+    --muted-color: #bebebe;
+    --arrow-up-color: green;
+    --arrow-down-color: red;
+}
 
-        #container {
-            width: 100%;
-            height: 100%;
-            max-width: 450px;
-            background-color: black;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: fixed;
-        }
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
 
-        .dropdown {
-            width: 100%;
-            height: 5%;
-            position: relative;
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
+#container {
+    width: 100vw;
+    height: 100vh;
+    max-width: 450px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
 
-        .dropdown-btn {
-            width: 100%;
-            height: 100%;
-            padding: 15px;
-            background-color: black;
-            color: white;
-            border-bottom: 1px solid rgb(44, 44, 44);
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            outline: none;
-            text-align: center;
-        }
+/* Dropdown Container */
+.dropdown {
+    width: 100%;
+    height: 4vh;
+    position: relative;
+    text-align: center;
+    z-index: 1000; /* Ensure dropdown stays on top */
+}
 
-        .dropdown-btn:hover {
-            background-color: #222;
-            border-color: #ccc;
-        }
+/* Dropdown Button */
+.dropdown-btn {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1em;
+    font-weight: normal;
+    cursor: pointer;
+    outline: none;
+}
 
-        .dropdown-options {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background-color: black;
-            border: 1px solid white;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
+/* Dropdown Options */
+.dropdown-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1001; /* Ensure it appears above other elements */
+}
 
-        .dropdown-options .dropdown-option {
-            padding: 10px;
-            color: white;
-            font-size: 1.2em;
-            font-weight: bold;
-            text-align: center;
-            cursor: pointer;
-        }
+.dropdown-options .dropdown-option {
+    padding: 10px;
+    color: var(--text-color);
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+}
 
-        .dropdown-options .dropdown-option:hover {
-            background-color: #333;
-        }
+.dropdown-options .dropdown-option:hover {
+    background-color: var(--secondary-color);
+}
 
-        .show {
-            display: block;
-        }
-
-        #view-container {
-            flex: 1 1 auto;
-            display: flex;
-            flex-direction: column;
-            height: 95%;
-        }
-
-        .view {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .grid {
-            display: grid;
-            align-content: space-evenly;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(2, 0fr);
-            height: 20%;
-            width: 100%;
-            color: white;
-        }
-
-        .view h2 {
-            margin-top: 15px;
-            margin-bottom: 0;
-            font-size: 1.4em;
-            font-weight: normal;
-            color: #696969;
-            display: flex;
-            padding: 10px;
-            justify-content: center;
-        }
-
-        .grid-item {
-            background-color: black;
-            color: white;
-            padding: 2px;
-            text-align: center;
-            border-radius: 4px;
-        }
-
-        .grid-item h3 {
-            margin: 0;
-            font-size: .8em;
-            font-weight: lighter;
-            color: #bebebe;
-        }
-
-        .grid-item .value {
-            font-size: .9em;
-            margin: 5px 0;
-            color: whitesmoke;
-        }
-
-        .value-unit {
-            font-size: .7em;
-            color: #bebebe;
-        }
-
-        .grid-item .change {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .7em;
-            color: #bebebe;
-        }
-
-        .grid-item .arrow {
-            width: 0;
-            height: 0;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            margin-right: 5px;
-        }
-
-        .grid-item .arrow.up {
-            border-bottom: 10px solid green;
-        }
-
-        .grid-item .arrow.down {
-            border-top: 10px solid red;
-        }
-
-        #content {
-            display: flex;
-            gap: 10px;
-            height: 60%;
-            flex-direction: row;
-            align-items: flex-start;
-            overflow: hidden;
-        }
-
-        #left {
-            flex: 2;
-            background-color: #d6eedd;
-            text-align: center;
-            padding: 5px;
-        }
-
-        #right {
-            flex: 1;
-            display: grid;
-            max-width: 30%;
-            align-content: center;
-            justify-items: stretch;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 10px;
-            height: 100%;
-            width: 100%;
-            color: white;
-        }
+/* Show Dropdown */
+.dropdown-options.show {
+    display: block;
+}
 
 
-        .graphic-item {
-            background-color: #222;
-            padding: 5px;
-            border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-            position: relative;
-            transition: all 0.3s ease-in-out;
-            width: auto;
-            max-width: calc(100vw - 10px);
-            /* Prevent overflow beyond viewport */
-            overflow: hidden;
-            /* Handle overflow content */
-        }
+/* View Container */
+#view-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 96vh; /* Adjusted to fit navbar */
+    overflow: hidden;
+}
 
-        .graphic-item.highlighted {
-            padding: 10px;
-            width: auto;
-            /* Use auto to grow naturally */
-            max-width: calc(100vw - 10px);
-            /* Ensure it stays within the viewport */
-            transform-origin: right;
-            transition: all 0.3s ease-in-out;
-        }
+/* Headings */
+h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: center;
+    margin: 10px 0 5px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+}
 
+/* Grid Layout for Overview View */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns for better fit */
+    gap: 8px;
+    padding: 8px;
+    overflow-y: auto;
+    max-height: calc(100% - 20px); /* Fit within viewport */
+}
 
-        .graphic-item .details {
-            display: none;
-            max-height: 0;
-            opacity: 0;
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-        }
+/* Grid Item Container */
+.grid-item {
+    background-color: var(--secondary-color);
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    opacity: 0.8; /* Slight transparency by default */
+    position: relative; /* Maintain position when enlarging */
+    transform: scale(1);
+    will-change: transform;
+}
 
-        .graphic-item.expanded .details {
-            display: flex;
-            flex-direction: column;
-            font-size: 1em;
-            margin-top: 5px;
-            max-height: fit-content;
-            opacity: 1;
-            width: 95%;
-        }
+/* Focused State */
+.grid-item:focus,
+.grid-item:hover {
+    opacity: 1; /* Fully opaque when in focus */
+    transform: scale(1.05); /* Enlarge slightly */
+    z-index: 10; /* Bring to the front to avoid overlap issues */
+}
 
-        .graphic-item.expanded .detail {
-            font-size: .6em;
-            color: #bebebe;
-            margin-top: 3px;
-        }
+/* Heading Style */
+.grid-item h3 {
+    margin: -10px -10px 10px; /* Aligns with padding to stretch background */
+    padding: 8px;
+    background-color: var(--primary-color); /* Different background color */
+    color: white; /* Consistent text color */
+    font-size: 1em;
+    font-weight: bold;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
 
+/* Value and Change Container */
+.grid-item .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
 
-        .graphic-item .text {
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: all 0.3s ease-in-out;
-        }
+/* Value Styling */
+.grid-item .value {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--text-color);
+}
 
-        .graphic-item.dimmed .text {
-            color: gray;
-        }
+/* Change Styling */
+.grid-item .change {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    color: var(--muted-color);
+}
 
-        .graphic-item.highlighted .text {
-            color: rgb(255, 255, 255);
-            transform: scale(1.1);
-        }
+/* Arrow Styles */
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    margin-right: 5px;
+}
 
-        .detail {
-            font-size: 0.5em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            color: white;
-        }
+.arrow.up {
+    border-bottom: 10px solid var(--arrow-up-color);
+}
 
-        .detail .value {
-            font-weight: normal;
-        }
+.arrow.down {
+    border-top: 10px solid var(--arrow-down-color);
+}
 
-        .arrow-value-container {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
+#view-1 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
 
-        .arrow {
-            width: 0;
-            height: 0;
-            border-left: 3px solid transparent;
-            border-right: 3px solid transparent;
-            margin-right: 3px;
-        }
+/* Body View */
+#view-2 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 
-        .arrow.up {
-            border-bottom: 6px solid green;
-        }
+/* SVG Container */
+#left {
+    flex: 2;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    max-height: 60vh; /* Ensure it fits within the viewport */
+    overflow: hidden;
+}
 
-        .arrow.down {
-            border-top: 6px solid red;
-        }
+.svg-container {
+    width: 100%;
+    height: 100%;
+    max-height: 60vh;
+}
 
-        .highlight {
-            stroke: black;
-            stroke-width: 2px;
-            opacity: 0.8;
-            transition: fill 0.2s, stroke 0.2s;
-        }
+/* Graphic Items */
+#right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+    overflow-y: auto;
+    max-height: 36vh; /* Ensures space for the SVG above */
+}
 
-        .svg-container {
-            padding: 10px;
-        }
+.graphic-item {
+    background-color: var(--svg-background);
+    padding: 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-size: 0.8em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 4vh; /* Default height to show only the heading */
+    overflow: hidden;
+}
 
-        .svg-container:focus {
-            outline: none;
-        }
+.graphic-item .text {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
 
-        @media (max-width: 375px) {
-            body {
-                background-color: #f2f2f2;
-            }
-        }
+/* Expanded Graphic Item */
+.graphic-item.expanded {
+    height: 15vh; /* Expanded height fits within the viewport */
+    width: 100%;
+    margin-top: auto; /* Align to the bottom */
+}
+
+/* Shrink other graphic items when one is expanded */
+.graphic-item.dimmed {
+    height: 3vh; /* Reduced height for non-selected items */
+}
+
+/* Responsive Design */
+@media (max-width: 375px) {
+    .grid {
+        grid-template-columns: 1fr; /* Single column layout for smaller screens */
+    }
+
+    .dropdown-btn {
+        font-size: 0.9em; /* Smaller font for smaller screens */
+    }
+}
+
     </style>
     <title>Mobile View Dashboard</title>
 </head>
@@ -336,213 +305,184 @@
         <div id="view-container">
             <!-- Overview View -->
             <div id="view-1" class="view">
-                <h2>This Week</h2>
+                <h2 id="weekHeading">Week Placeholder</h2>
                 <div class="grid">
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Avg HR</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Intensity Minutes</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Bodyfat %</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Workouts</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Runs</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Calorie Cost</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Avg Pace</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>BMI</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
                 </div>
+            
                 <h2>Progress</h2>
                 <div class="grid">
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Avg HR</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Intensity Minutes</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Bodyfat %</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Workouts</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Avg HR</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Intensity Minutes</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Bodyfat %</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Workouts</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
                 </div>
+            
                 <h2>Health</h2>
                 <div class="grid">
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Avg HR</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Intensity Minutes</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Bodyfat %</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
+                    <div class="grid-item" tabindex="0">
                         <h3>Workouts</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Avg HR</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Intensity Minutes</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Bodyfat %</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <h3>Workouts</h3>
-                        <div class="value">123</div>
-                        <div class="change">
-                            <span class="arrow up"></span>
-                            5%
+                        <div class="content">
+                            <div class="value">123</div>
+                            <div class="change">
+                                <span class="arrow up"></span>
+                                5%
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <!-- Body View -->
             <div id="view-2" class="view" style="display: none;">
                 <div id="content">
                     <div id="left"
-                        style="background-color: black; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        style="background-color: var(--svg-background); height: 100%; display: flex; align-items: center; justify-content: center;">
                         <svg class="svg-container" id="body-outline" viewBox="0 0 200 500"
                             preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;">
                             <!-- Generated SVG paths based on JavaScript body part data -->
@@ -657,12 +597,6 @@
             </div>
             <!-- Cardio View -->
             <div id="view-3" class="view" style="display: none;">
-            </div>
-            <!-- Lifting View -->
-            <div id="view-4" class="view" style="display: none;">
-            </div>
-            <!-- Hyrox View -->
-            <div id="view-5" class="view" style="display: none;">
             </div>
         </div>
     </div>
@@ -1022,8 +956,8 @@
 
         function bodyPartFunctionality() {
             const groups = {
-                neck: ['neck'],
-                shoulders: ['deltoids', 'trapezius'],
+                neck: ['neck', 'trapezius'],
+                shoulders: ['deltoids'],
                 chest: ['chest'],
                 upperArms: ['biceps', 'triceps'],
                 lowerArms: ['forearm'],
@@ -1135,9 +1069,7 @@
         var views = [
             { id: 1, name: "Overview" },
             { id: 2, name: "Body" },
-            { id: 3, name: "Cardio" },
-            { id: 4, name: "Lifting" },
-            { id: 5, name: "Hyrox" }
+            { id: 3, name: "Cardio" }
         ];
 
         function toggleDropdown() {
@@ -1190,6 +1122,8 @@
 
         // Initialize on page load
         document.addEventListener("DOMContentLoaded", () => {
+            populateVariablesFromCSV();
+            populateHtmlData();
             populateViews(); // Populate views with content
             populateDropdown(); // Populate dropdown options
 
@@ -1204,7 +1138,75 @@
             }
         });
 
+        // Define variables corresponding to each column
+let week_num;
+let cardio_count_week;
+let cardio_count_last_week;
+let cardio_count_total;
+let lifting_count_week;
+let lifting_count_last_week;
+let lifting_count_total;
+let calories_week;
+let calories_last_week;
+let calories_total;
+let activity_mins_week;
+let activity_mins_last_week;
+let activity_mins_total;
+let min_hr_week;
+let min_hr_last_week;
+let max_hr_week;
+let max_hr_last_week;
 
+// URL of the CSV
+const csvUrl = 'data/data.csv';
+// Function to populate variables from the CSV
+async function populateVariablesFromCSV() {
+  try {
+    const response = await fetch(csvUrl);
+    const csvText = await response.text();
+    
+    // Split by new line to separate rows
+    const rows = csvText.trim().split("\n");
+    
+    // First row is headers, second row is the data
+    const headers = rows[0].split(",");
+    const data = rows[1].split(",");
+
+    // Create a mapping from header to value
+    const dataMap = {};
+    headers.forEach((header, index) => {
+      dataMap[header] = data[index];
+    });
+
+    // Assign values to the variables
+    week_num = dataMap["week_num"];
+    cardio_count_week = dataMap["cardio_count_week"];
+    cardio_count_last_week = dataMap["cardio_count_last_week"];
+    cardio_count_total = dataMap["cardio_count_total"];
+    lifting_count_week = dataMap["lifting_count_week"];
+    lifting_count_last_week = dataMap["lifting_count_last_week"];
+    lifting_count_total = dataMap["lifting_count_total"];
+    calories_week = dataMap["calories_week"];
+    calories_last_week = dataMap["calories_last_week"];
+    calories_total = dataMap["calories_total"];
+    activity_mins_week = dataMap["activity_mins_week"];
+    activity_mins_last_week = dataMap["activity_mins_last_week"];
+    activity_mins_total = dataMap["activity_mins_total"];
+    min_hr_week = dataMap["min_hr_week"];
+    min_hr_last_week = dataMap["min_hr_last_week"];
+    max_hr_week = dataMap["max_hr_week"];
+    max_hr_last_week = dataMap["max_hr_last_week"];
+    
+    console.log("Variables populated successfully!");
+    
+  } catch (error) {
+    console.error("Error fetching or parsing CSV:", error);
+  }
+}
+
+function populateHtmlData() {
+    document.getElementById('weekHeading').textContent = 'Week ' + week_num;
+}
     </script>
 </body>
 
